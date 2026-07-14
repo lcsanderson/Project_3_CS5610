@@ -23,12 +23,12 @@ router.get("/objects", async (req, res) => {
 
   try {
     const response = await fetch(COOPER_HEWITT_ENDPOINT, {
-      method: "POST",
+      method: "POST", //GraphQL only uses POST to make queries
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query }),
     });
 
-    const json = await response.json();
+    const json = await response.json(); //creates a JS object
 
     if (json.errors) {
       console.error("Cooper Hewitt returned GraphQL errors:", json.errors);
