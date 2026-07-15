@@ -1,15 +1,24 @@
-export default function IndexPage() {
-  console.log("Hello from React");
+import { useState, useEffect } from "react";
+import Tile from "./Tile.jsx";
 
-  fetch("/api/listings")
-    .then((res) => res.json())
-    .then((data) => console.log("Listings data:", data));
+export default function IndexPage() {
+  const [listings, setListings] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/objects")
+      .then((res) => res.json())
+      .then((data) => setListings(data))
+      .catch((err) => console.error("Failed to fetch listings", err));
+  }, []);
 
   return (
     <>
-      <h3> welcome to the... </h3>
-      <h1> Index Page </h1>
-      <h3> !!! </h3>
+      <h1> This should be a search... bar </h1>
+      <div className="tile-container">
+        {listings.map((listing) => (
+          <Tile key={listing.id} {...listing} />
+        ))}
+      </div>
     </>
   );
 }
