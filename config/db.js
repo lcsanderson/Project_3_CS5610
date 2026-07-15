@@ -1,3 +1,5 @@
+// shared MongoDB connection that the rest of the backend will import and reuse
+// so that not every file needs to open its own seperate connection
 import { MongoClient } from "mongodb";
 
 import dotenv from "dotenv";
