@@ -30,8 +30,8 @@ router.get("/objects", async (req, res) => {
 
     const json = await response.json(); //creates a JS object
 
-    if (json.errors) {
-      console.error("Cooper Hewitt returned GraphQL errors:", json.errors);
+    if (json.errors || !json.data || !json.data.object) {
+      console.error("Cooper Hewitt did not return usable data:", json);
       return res
         .status(502)
         .json({ error: "Cooper Hewitt API returned an error" });

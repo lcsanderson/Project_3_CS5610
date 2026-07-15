@@ -1,3 +1,78 @@
 body {
   background-color: #6A282C;
 }
+
+.tile-container {
+  display: flex; /* side by side aligning */
+  overflow-x: auto; /* make scrollable*/
+  flex-wrap: nowrap; /* keeps everything on one line */
+  padding: 16px;
+ 
+  /*
+    Space between adjacent tiles. "gap" on a flex container applies
+    between every pair of items automatically — cleaner than adding
+    margin to each individual tile, which would double up between
+    tiles (tile A's right margin + tile B's left margin) unless
+    carefully managed.
+  */
+  gap: 16px;
+}
+ 
+/*
+  Each individual tile. The one property that matters for scrolling
+  to work correctly is flex-shrink.
+*/
+.tile {
+  /*
+    By default, flex items are allowed to SHRINK to fit their
+    container if there isn't enough room (flex-shrink: 1 is the
+    browser default). That's the opposite of what you want here —
+    if tiles were allowed to shrink, the browser would squeeze all 20
+    tiles to fit the visible width instead of letting them overflow
+    and scroll. Setting flex-shrink: 0 tells the browser "never
+    shrink this tile below its natural/set width, no matter how many
+    siblings it has" — which is what forces the container to overflow
+    and the scrollbar to appear, instead of everything cramming into
+    view at once.
+  */
+  flex-shrink: 0;
+ 
+  /*
+    A fixed width, so every tile takes up a predictable, equal amount
+    of horizontal space. Without SOME explicit width, each tile would
+    size itself based on its own content (title text length, etc.),
+    making tiles wildly inconsistent widths next to each other — you
+    saw earlier how much title lengths vary ("Fragment" vs. the Marie
+    Thérèse funeral procession title), so this keeps the row visually
+    even regardless of that. 240px is an arbitrary starting number —
+    you'll likely tune this once real visual design starts.
+  */
+  width: 240px;
+}
+ 
+/*
+  The image inside each tile. Without this, an <img> renders at its
+  OWN natural pixel dimensions (up to 350px wide, per the "preview"
+  size from Cooper Hewitt) regardless of how wide you set .tile to be
+  above — which would make images overflow their tile or make tiles
+  inconsistent sizes depending on each image's original dimensions.
+*/
+.tile-image {
+  /*
+    Constrains the image to never exceed its parent tile's width,
+    scaling down proportionally if needed. 100% here means "100% of
+    .tile's width" (240px, from above).
+  */
+  max-width: 100%;
+ 
+  /*
+    Without this, height would be left to scale automatically based
+    on the image's own aspect ratio combined with max-width — which
+    is actually fine and often desirable (keeps images from looking
+    stretched). "auto" is really just making that default explicit
+    here as a placeholder for a decision you may revisit once you
+    have many images with very different aspect ratios (portraits vs.
+    landscapes vs. square objects) sitting in same-width tiles.
+  */
+  height: auto;
+}
