@@ -64,7 +64,7 @@ export async function removeItemFromCollection(id, userId, objectId) {
 }
 
 export async function deleteCollection(id, userId) {
-  const result = await collectionsCollection().delteOne({
+  const result = await collectionsCollection().deleteOne({
     _id: new ObjectId(id),
     userId: new ObjectId(userId),
   });
