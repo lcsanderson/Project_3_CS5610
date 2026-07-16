@@ -14,7 +14,7 @@ geography
 date
 `;
 
-// GET api/objects - Retrieve all listings
+// GET api/objects - Retrieve all objects
 router.get("/objects", async (req, res) => {
   const query = `
         {
