@@ -1,5 +1,5 @@
 body {
-  background-color: #6A282C;
+  background-color: #6a282c;
 }
 
 .tile-container {
@@ -7,7 +7,7 @@ body {
   overflow-x: auto; /* make scrollable*/
   flex-wrap: nowrap; /* keeps everything on one line */
   padding: 16px;
- 
+
   /*
     Space between adjacent tiles. "gap" on a flex container applies
     between every pair of items automatically — cleaner than adding
@@ -17,7 +17,7 @@ body {
   */
   gap: 16px;
 }
- 
+
 /*
   Each individual tile. The one property that matters for scrolling
   to work correctly is flex-shrink.
@@ -36,7 +36,7 @@ body {
     view at once.
   */
   flex-shrink: 0;
- 
+
   /*
     A fixed width, so every tile takes up a predictable, equal amount
     of horizontal space. Without SOME explicit width, each tile would
@@ -51,7 +51,7 @@ body {
   border-color: red;
   border-style: double;
 }
- 
+
 /*
   The image inside each tile. Without this, an <img> renders at its
   OWN natural pixel dimensions (up to 350px wide, per the "preview"
@@ -66,7 +66,7 @@ body {
     .tile's width" (240px, from above).
   */
   max-width: 100%;
- 
+
   /*
     Without this, height would be left to scale automatically based
     on the image's own aspect ratio combined with max-width — which
@@ -77,4 +77,11 @@ body {
     landscapes vs. square objects) sitting in same-width tiles.
   */
   height: auto;
+}
+
+.tile-save-button {
+  /* Just enough breathing room so the button doesn't crowd the year
+     text right above it — no color/size/hover treatment yet, that's
+     a later aesthetics pass. */
+  margin-top: 8px;
 }

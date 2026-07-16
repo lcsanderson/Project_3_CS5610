@@ -1,0 +1,51 @@
+.modal-backdrop {
+  /* Fixed + full viewport coverage: sits on top of everything else,
+     regardless of scroll position, and dims/blocks interaction with
+     the page underneath. */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+ 
+  /* Centers .modal-box both horizontally and vertically inside the
+     backdrop, regardless of the box's own size. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+  /* Above the star nav button (z-index: 10) and everything else on
+     the page, so the modal is never accidentally hidden behind
+     other fixed-position elements. */
+  z-index: 100;
+}
+ 
+.modal-box {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+ 
+.modal-radio-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+ 
+.modal-error {
+  color: #b3261e;
+}
+ 
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+ 
