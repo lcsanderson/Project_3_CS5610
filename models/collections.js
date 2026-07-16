@@ -25,8 +25,8 @@ export async function getCollectionsForUser(userId) {
     .toArray();
 }
 
-// get individual colleciton for details when clicked on
-export async function getCollectionsById(id, userId) {
+// get individual collection for details when clicked on
+export async function getCollectionById(id, userId) {
   return await collectionsCollection().findOne({
     _id: new ObjectId(id),
     userId: new ObjectId(userId),
@@ -63,7 +63,7 @@ export async function removeItemFromCollection(id, userId, objectId) {
   return result.matchedCount > 0;
 }
 
-export async function deleteColleciton(id, userId) {
+export async function deleteCollection(id, userId) {
   const result = await collectionsCollection().delteOne({
     _id: new ObjectId(id),
     userId: new ObjectId(userId),
