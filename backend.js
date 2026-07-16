@@ -8,6 +8,7 @@ import passport from "./config/passport.js";
 
 import objectesRouter from "./routes/Objects.js";
 import authRouter from "./routes/Auth.js";
+import collectionsRouter from "./routes/Collections.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -38,6 +39,7 @@ app.use(passport.session());
 app.use("/", express.static("./FRONTEND/dist"));
 app.use("/api", objectesRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/collections", collectionsRouter);
 
 app.get("*splat", function (req, res) {
   res.sendFile("index.html", {
