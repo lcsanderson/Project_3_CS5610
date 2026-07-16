@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Tile from "./Tile.jsx";
+import Tile from "../components/Tile.jsx";
 
 export default function IndexPage() {
   const [listings, setListings] = useState([]);

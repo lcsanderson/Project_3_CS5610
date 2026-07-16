@@ -30,9 +30,14 @@ router.post("/register", async (req, res) => {
 
     delete user.password;
 
-    res.status(201).json({
-      message: "User created successfully",
-      user,
+    req.login(user, (err) => {
+      if (err) {
+        return res.status(500).json({
+          message: "Registered, but auto-login failed",
+          error: err.message,
+        });
+      }
+      res.redirect("/");
     });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
