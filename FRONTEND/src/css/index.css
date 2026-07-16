@@ -48,6 +48,8 @@ body {
     you'll likely tune this once real visual design starts.
   */
   width: 240px;
+  border-color: red;
+  border-style: double;
 }
  
 /*
