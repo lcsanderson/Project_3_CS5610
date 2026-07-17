@@ -7,8 +7,10 @@ async function fetchPage(pageNumber, searchTerm) {
   const trimmed = searchTerm.trim();
   const url = trimmed
     ? `/api/search?q=${encodeURIComponent(trimmed)}&page=${pageNumber}`
-    : `/api/listings?page=${pageNumber}`;
+    : `/api/objects?page=${pageNumber}`;
 
+
+    console.error("Fetching URL:", url);
   const res = await fetch(url);
   if (!res.ok) {
     throw new Error(`Backend responded with status ${res.status}`);
@@ -27,6 +29,7 @@ export default function IndexPage() {
 
   const [modalItem, setModalItem] = useState(null);
   const [userCollections, setUserCollections] = useState([]);
+  const [hasLoadedOnce, setHasLoadedOnce] = useState(false);
   const navigate = useNavigate();
 
   // scrollable tile container
@@ -41,10 +44,18 @@ export default function IndexPage() {
       setObjects(items);
       setPage(1);
       setHasMore(more);
+      setHasLoadedOnce(true);
     } catch (err) {
       console.error("Failed to fetch objects:", err);
     }
   }, [query]);
+
+  const [prevQuery, setPrevQuery] = useState(query);
+
+  if (query !== prevQuery) {
+    setPrevQuery(query);
+    setHasLoadedOnce(false);
+  }
 
   useEffect(() => {
     const timeout = setTimeout(resetAndLoadFirstPage, 300);
@@ -55,7 +66,7 @@ export default function IndexPage() {
   // sentinel scrolls into view.
   const loadMore = useCallback(async () => {
     // ends early if we're already mid-fetch
-    if (isLoadingMore || !hasMore) {
+    if (!hasLoadedOnce || isLoadingMore || !hasMore) {
       return;
     }
     setIsLoadingMore(true);
@@ -66,11 +77,11 @@ export default function IndexPage() {
       setPage(nextPage);
       setHasMore(more);
     } catch (err) {
-      console.error("Failed to load more listings:", err);
+      console.error("Failed to load more objects:", err);
     } finally {
       setIsLoadingMore(false);
     }
-  }, [isLoadingMore, hasMore, page, query]);
+  }, [hasLoadedOnce, isLoadingMore, hasMore, page, query]);
 
   useEffect(() => {
     const sentinel = sentinelRef.current;
