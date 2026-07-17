@@ -30,3 +30,36 @@
   font-size: 0.9em;
   color: #666;
 }
+
+.logout-triangle-button {
+  /* Mirrors the star button's fixed top-right placement, but on the
+     LEFT — keeps the two from ever overlapping, and keeps this page's
+     one extra control visually separate from the star's "go home"
+     behavior. */
+  position: fixed;
+  top: 16px;
+  left: 16px;
+
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+
+  /* Dark sage green — sets the button's `color`, which the triangle
+     SVG's fill="currentColor" then picks up automatically. Adjust
+     this single value later if the exact shade needs tuning during
+     the aesthetics pass — nothing else needs to change. */
+  color: #5b6f4f;
+}
+
+.logout-triangle-button svg {
+  width: 24px;
+  height: 24px;
+}
