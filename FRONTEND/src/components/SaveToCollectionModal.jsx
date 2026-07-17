@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import "../css/SaveToCollectionModal.css";
 
 export default function SaveToCollectionModal({ item, collections, onClose }) {
@@ -124,3 +125,21 @@ export default function SaveToCollectionModal({ item, collections, onClose }) {
     </div>
   );
 }
+
+SaveToCollectionModal.propTypes = {
+  item: PropTypes.shape({
+    objectId: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    designer: PropTypes.string.isRequired,
+    country: PropTypes.string.isRequired,
+    year: PropTypes.string.isRequired,
+    imageUrl: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([null])]),
+  }).isRequired,
+  collections: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  onClose: PropTypes.func.isRequired,
+};

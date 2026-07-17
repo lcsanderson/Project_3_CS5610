@@ -1,4 +1,5 @@
 import StarButton from "./StarButton";
+import PropTypes from "prop-types";
 
 export default function BaseTemplate({ children }) {
   return (
@@ -12,3 +13,7 @@ export default function BaseTemplate({ children }) {
     </div>
   );
 }
+
+BaseTemplate.propTypes = {
+  children: PropTypes.node.isRequired,
+};

@@ -35,7 +35,7 @@ export default function IndexPage() {
     };
   }, [reloadObjects, query]);
 
-  // called by tile's onSave prop when save button is clicked
+  // called by tile's onAction prop when save button is clicked
   async function handleSaveClick(item) {
     try {
       const res = await fetch("/api/collections");
@@ -74,7 +74,7 @@ export default function IndexPage() {
       />
       <div className="tile-container">
         {objects.map((object) => (
-          <Tile key={object.id} {...object} onSave={handleSaveClick} />
+          <Tile key={object.id} {...object} onAction={handleSaveClick} />
         ))}
       </div>
       {modalItem && (
