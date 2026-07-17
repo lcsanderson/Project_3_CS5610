@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNaviagte, Link } from "react-router";
-import "../CollectionPage.css";
+import "../CollectionsPage.css";
 
 export default function CollectionsPage() {
   // null means data is loading, [] means empty collection
