@@ -1,39 +1,104 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate } from "react-router";
 import Tile from "../components/Tile.jsx";
 import SaveToCollectionModal from "../components/SaveToCollectionModal.jsx";
+
+async function fetchPage(pageNumber, searchTerm) {
+  const trimmed = searchTerm.trim();
+  const url = trimmed
+    ? `/api/search?q=${encodeURIComponent(trimmed)}&page=${pageNumber}`
+    : `/api/listings?page=${pageNumber}`;
+
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`Backend responded with status ${res.status}`);
+  }
+  return await res.json();
+}
 
 export default function IndexPage() {
   const [objects, setObjects] = useState([]);
   const [query, setQuery] = useState("");
 
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  // prevents two overlapping "load next page" requests
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
   const [modalItem, setModalItem] = useState(null);
   const [userCollections, setUserCollections] = useState([]);
   const navigate = useNavigate();
 
-  const reloadObjects = useCallback(async () => {
-    const url = query.trim()
-      ? `/api/search?q=${encodeURIComponent(query.trim())}`
-      : "/api/objects";
+  // scrollable tile container
+  const containerRef = useRef(null);
+  // invisible marker element AFTER last tile
+  const sentinelRef = useRef(null);
 
+  // throws away whatever was loaded before and starts fresh from page 1
+  const resetAndLoadFirstPage = useCallback(async () => {
     try {
-      const res = await fetch(url);
-      if (!res.ok) {
-        throw new Error(`Backend responded with status ${res.status}`);
-      }
-      const data = await res.json();
-      setObjects(data);
+      const { items, hasMore: more } = await fetchPage(1, query);
+      setObjects(items);
+      setPage(1);
+      setHasMore(more);
     } catch (err) {
       console.error("Failed to fetch objects:", err);
     }
   }, [query]);
 
   useEffect(() => {
-    const timeout = setTimeout(reloadObjects, 300);
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [reloadObjects, query]);
+    const timeout = setTimeout(resetAndLoadFirstPage, 300);
+    return () => clearTimeout(timeout);
+  }, [resetAndLoadFirstPage]);
+
+  // called by IntersectionObserver below once the
+  // sentinel scrolls into view.
+  const loadMore = useCallback(async () => {
+    // ends early if we're already mid-fetch
+    if (isLoadingMore || !hasMore) {
+      return;
+    }
+    setIsLoadingMore(true);
+    try {
+      const nextPage = page + 1;
+      const { items, hasMore: more } = await fetchPage(nextPage, query);
+      setObjects((prev) => [...prev, ...items]);
+      setPage(nextPage);
+      setHasMore(more);
+    } catch (err) {
+      console.error("Failed to load more listings:", err);
+    } finally {
+      setIsLoadingMore(false);
+    }
+  }, [isLoadingMore, hasMore, page, query]);
+
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    const container = containerRef.current;
+    // Guard against either ref not being attached yet
+    if (!sentinel || !container) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          loadMore();
+        }
+      },
+      {
+        root: container,
+        // loadMore() fires a little BEFORE the user physically reaches
+        // the last tile
+        rootMargin: "0px 300px 0px 0px",
+        threshold: 0,
+      },
+    );
+
+    observer.observe(sentinel);
+
+    return () => observer.disconnect();
+  }, [loadMore]);
 
   // called by tile's onAction prop when save button is clicked
   async function handleSaveClick(item) {
@@ -76,7 +141,9 @@ export default function IndexPage() {
         {objects.map((object) => (
           <Tile key={object.id} {...object} onAction={handleSaveClick} />
         ))}
+        <div ref={sentinelRef} className="scroll-sentinel" />
       </div>
+      {isLoadingMore && <p>Loading more...</p>}
       {modalItem && (
         <SaveToCollectionModal
           item={modalItem}

@@ -85,3 +85,15 @@ body {
      a later aesthetics pass. */
   margin-top: 8px;
 }
+
+
+.scroll-sentinel {
+  /* Invisible on purpose — this element exists only so the
+     IntersectionObserver in IndexPage.jsx has something to watch at
+     the end of the tile row. flex-shrink: 0 keeps it from being
+     squeezed to nothing (same reasoning as .tile's flex-shrink: 0),
+     and a small explicit width gives it a real, measurable position
+     in the flex row rather than collapsing to zero-width. */
+  flex-shrink: 0;
+  width: 1px;
+}

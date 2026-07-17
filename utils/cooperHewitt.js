@@ -12,7 +12,10 @@ export async function queryCooperHewitt(query, variables = {}) {
       `Cooper Hewitt did not return usable data: ${JSON.stringify(json)}`,
     );
   }
-  return json.data.object;
+  return {
+    objects: json.data.object,
+    pagination: json.extensions.pagination,
+  };
 }
 
 // flattens out cooper hewitt record to accompadte Tile component design
