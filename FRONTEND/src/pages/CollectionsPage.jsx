@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { useNaviagte, Link } from "react-router";
+import { useNavigate, Link } from "react-router";
 import "../css/CollectionsPage.css";
 
 export default function CollectionsPage() {
   // null means data is loading, [] means empty collection
   // [...] means here is filled collection
   const [collections, setCollections] = useState(null);
-  const navigate = useNaviagte();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("/api/collections")
