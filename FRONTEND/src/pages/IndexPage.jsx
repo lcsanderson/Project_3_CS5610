@@ -9,8 +9,7 @@ async function fetchPage(pageNumber, searchTerm) {
     ? `/api/search?q=${encodeURIComponent(trimmed)}&page=${pageNumber}`
     : `/api/objects?page=${pageNumber}`;
 
-
-    console.error("Fetching URL:", url);
+  console.error("Fetching URL:", url);
   const res = await fetch(url);
   if (!res.ok) {
     throw new Error(`Backend responded with status ${res.status}`);

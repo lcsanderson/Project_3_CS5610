@@ -86,7 +86,6 @@ body {
   margin-top: 8px;
 }
 
-
 .scroll-sentinel {
   /* Invisible on purpose — this element exists only so the
      IntersectionObserver in IndexPage.jsx has something to watch at

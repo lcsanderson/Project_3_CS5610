@@ -35,17 +35,17 @@ export default function StarButton() {
     if (onCollectionsPage) {
       navigate("/");
     } else if (user) {
-        navigate("/collections");
+      navigate("/collections");
     } else {
       navigate("/login");
     }
   }
 
   const label = onCollectionsPage
-  ? "Go to home page"
-  : user
-  ? "Go to my colelctions"
-  : "Log in"
+    ? "Go to home page"
+    : user
+      ? "Go to my colelctions"
+      : "Log in";
 
   return (
     <button
