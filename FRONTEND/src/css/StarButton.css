@@ -1,27 +1,27 @@
 .star-nav-button {
-    background-color: transparent;
-    position: fixed;
-    top: 16px;
-    right: 16px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%; /* positioning star svg inside circle shape */
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
+  background-color: transparent;
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%; /* positioning star svg inside circle shape */
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
 }
 
 .star-nav-button svg {
-    width: 36px;
-    height: 36px;
-    color: red;
+  width: 36px;
+  height: 36px;
+  color: red;
 }
 
 /* disabled while auth is verifying user */
 .star-nav-button:disabled {
-    cursor: defualt;
-    opacity: 0.5;
+  cursor: defualt;
+  opacity: 0.5;
 }

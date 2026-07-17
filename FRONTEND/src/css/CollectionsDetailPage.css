@@ -1,22 +1,21 @@
 /* pages/CollectionDetailPage.css
    Minimal layout only, matching the "aesthetics later" approach used
    everywhere else so far. */
- 
+
 .collection-detail {
   padding: 16px;
 }
- 
+
 .collection-detail-header {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 16px;
 }
- 
+
 .delete-collection-button {
   /* Pushed to the far right of the header row, away from the
      name/rename controls, since it's a destructive action worth
      visually separating from everything else up there. */
   margin-left: auto;
 }
- 

@@ -139,7 +139,7 @@ SaveToCollectionModal.propTypes = {
     PropTypes.shape({
       _id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-    })
+    }),
   ).isRequired,
   onClose: PropTypes.func.isRequired,
 };
