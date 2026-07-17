@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import "../css/StarButton.css";
 
 // will lead to login/register if no active login
@@ -9,6 +9,7 @@ export default function StarButton() {
   // nobody logged in), or a real user object.
   const [user, setUser] = useState(undefined);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     fetch("/api/auth/user")
@@ -27,20 +28,30 @@ export default function StarButton() {
       .catch(() => setUser(null));
   }, []);
 
+  const onCollectionsPage = location.pathname.startsWith("/collections");
+
   // sets direction of click depending on login or not
   function handleClick() {
-    if (user) {
-      navigate("/collections");
+    if (onCollectionsPage) {
+      navigate("/");
+    } else if (user) {
+        navigate("/collections");
     } else {
       navigate("/login");
     }
   }
 
+  const label = onCollectionsPage
+  ? "Go to home page"
+  : user
+  ? "Go to my colelctions"
+  : "Log in"
+
   return (
     <button
       className="star-nav-button"
       onClick={handleClick}
-      aria-label={user ? "Go to my collections" : "Log in"}
+      aria-label={label}
       disabled={user === undefined}
     >
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
