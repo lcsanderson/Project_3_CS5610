@@ -77,7 +77,6 @@ export default function IndexPage() {
           <Tile key={object.id} {...object} onSave={handleSaveClick} />
         ))}
       </div>
-      // if modalItem is null bc not activated React doesn't render it
       {modalItem && (
         <SaveToCollectionModal
           item={modalItem}

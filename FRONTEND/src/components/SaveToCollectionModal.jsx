@@ -9,7 +9,7 @@ export default function SaveToCollectionModal({ item, collections, onClose }) {
   const [newCollectionName, setNewCollectionName] = useState("");
 
   // used to disable button once a save is happening
-  const [saving, setSaving] = useState("false");
+  const [saving, setSaving] = useState(false);
 
   // used to set a message to show if something goes wrong
   // null means no error rn
@@ -44,10 +44,10 @@ export default function SaveToCollectionModal({ item, collections, onClose }) {
       }
 
       const addRes = await fetch(
-        `/api/collections/${targetCollectionId}items`,
+        `/api/collections/${targetCollectionId}/items`,
         {
           method: "POST",
-          headers: { "Content-Type": "applications/json" },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(item),
         },
       );
@@ -74,7 +74,7 @@ export default function SaveToCollectionModal({ item, collections, onClose }) {
           <fieldset>
             <legend>Choose an existing collection</legend>
             {collections.map((collection) => (
-              <lavel key={collection._id} className="modal-radio-row">
+              <label key={collection._id} className="modal-radio-row">
                 <input
                   type="radio"
                   name="colleciton-choice"
@@ -83,7 +83,7 @@ export default function SaveToCollectionModal({ item, collections, onClose }) {
                   onChange={() => setSelectedId(collection._id)}
                 />
                 {collection.name}
-              </lavel>
+              </label>
             ))}
           </fieldset>
         )}

@@ -1,4 +1,5 @@
 export default function Tile({
+  id,
   title,
   designer,
   country,
@@ -17,7 +18,7 @@ export default function Tile({
         className="tile-save-button"
         onClick={() =>
           onSave({
-            objectId: IdleDeadline,
+            objectId: id,
             title,
             designer,
             country,
