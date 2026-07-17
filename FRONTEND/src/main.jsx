@@ -19,7 +19,7 @@ root.render(
           <Route path="/" element={<IndexPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/collectioins" element={<CollectionsPage />} />
+          <Route path="/collections" element={<CollectionsPage />} />
         </Routes>
       </BaseTemplate>
     </BrowserRouter>
