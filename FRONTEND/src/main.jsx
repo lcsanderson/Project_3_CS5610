@@ -7,6 +7,7 @@ import BaseTemplate from "./components/BaseTemplate.jsx";
 import IndexPage from "./pages/IndexPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
+import CollectionsPage form "./pages/CollectionsPage.jsx";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -18,6 +19,7 @@ root.render(
           <Route path="/" element={<IndexPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/collectioins" element={<CollectionsPage />} />
         </Routes>
       </BaseTemplate>
     </BrowserRouter>

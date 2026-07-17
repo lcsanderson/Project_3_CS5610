@@ -1,0 +1,32 @@
+/* pages/CollectionsPage.css
+   Minimal layout only, matching the "aesthetics later" approach used
+   everywhere else so far. */
+ 
+.collections-list {
+  /* Plain vertical stacking — no special scroll container needed
+     here, unlike the horizontal tile scroll on IndexPage. The
+     browser's own page scroll handles "scroll down to see more
+     collections" with zero extra CSS required. */
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+ 
+.collection-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #ccc;
+ 
+  /* Links are blue/underlined by default — removing that here since
+     this reads as a list row, not inline text, but leaving the actual
+     color/hover treatment for the later design pass. */
+  text-decoration: none;
+  color: inherit;
+}
+ 
+.collection-count {
+  font-size: 0.9em;
+  color: #666;
+}
