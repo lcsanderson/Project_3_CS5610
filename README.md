@@ -18,9 +18,7 @@ Logan Sanderson
  
 ## Screenshot
  
-<!-- TODO: replace this with an actual screenshot of the running app,
-     e.g. ![Home page screenshot](./screenshot.png) -->
-_Screenshot coming soon._
+/Users/lcs003/Desktop/Align MSCS/YEAR 2/SUMMER/CS 5610/Project3/Screenshot.png
  
 ## Live Demo
  
