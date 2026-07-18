@@ -1,20 +1,22 @@
 # Project_3_CS5610
 
-Project 3 as described by the NEU CS 5610 Summer 2026 course
+Project 3 as described by the NEU CS 5610 Summer 2026 course. Important note about this app is that it is super ugly on purpose,
+I prioritized making the app functional over beautiful because I noticed that Project 4 is intended to be an iteration on this 
+project but with an eye for design, user experience, and other important updates currently missing.
+
+## Author
+ 
+Logan Sanderson
+
+## Class
+ 
+[Web Development, Online, Summer 2026](https://johnguerra.co/classes/webDevelopment_online_summer_2026/)
 
 # ai usage
 
 Claude helped a lot with authentication. I followed same patterns as professor's demo, but Claude helped a lot in linking that with the MongoDB database storing all the user info
 
-Claude also helped a lot with managing the Cooper Hewitt API, it is managed with a tool called GraphQL which I've never heard of or used before, so Claude streamlined that process a lot for me
-
-## Author
- 
-Logan Sanderson
- 
-## Class
- 
-[Web Development, Online, Summer 2026](https://johnguerra.co/classes/webDevelopment_online_summer_2026/)
+Claude also helped a lot with managing the Cooper Hewitt API, it is managed with a tool called GraphQL which I've never heard of or used before, so Claude streamlined that process a lot for me.  
  
 ## Screenshot
  
@@ -26,7 +28,7 @@ https://lcs003.onrender.com
  
 ## Tech Stack
  
-- **Frontend:** React, React Router
+- **Frontend:** React
 - **Backend:** Node.js, Express
 - **Database:** MongoDB (native driver, no Mongoose)
 - **Authentication:** Passport (local strategy) + express-session
@@ -36,23 +38,10 @@ https://lcs003.onrender.com
 ### Prerequisites
 - Node.js installed
 - A MongoDB database (e.g. a free MongoDB Atlas cluster)
-### 1. Clone the repository
-```
-git clone <your repo URL>
-cd <project folder>
-```
  
-### 2. Backend setup
+### 1. Backend setup
 ```
-cd backend
 npm install
-```
- 
-Create a `.env` file in the backend folder with:
-```
-MONGO_URI=your-mongodb-connection-string
-MONGO_DB_NAME=your-database-name
-SESSION_SECRET=any-long-random-string
 ```
  
 Start the backend:
@@ -61,19 +50,19 @@ npm start
 ```
 The backend runs on `http://localhost:3000`.
  
-### 3. Frontend setup
+### 2. Frontend setup
 In a separate terminal:
 ```
-cd frontend
+cd FRONTEND
 npm install
 npm run dev
 ```
 The frontend dev server runs on `http://localhost:5173`, proxying `/api`
 requests to the backend.
  
-### 4. Building for production
+### 3. Building for production
 ```
-cd frontend
+cd FRONTNED
 npm run build
 ```
 This outputs a production build that the backend serves directly from
