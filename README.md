@@ -18,7 +18,7 @@ Logan Sanderson
  
 ## Screenshot
  
-/Users/lcs003/Desktop/Align MSCS/YEAR 2/SUMMER/CS 5610/Project3/Screenshot.png
+![image info](./Screenshot.png)
  
 ## Live Demo
  
