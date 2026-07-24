@@ -147,6 +147,7 @@ export default function IndexPage() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
+      {"Tile-container can use a grid layout or implement pagination."}
       <div className="tile-container" ref={containerRef}>
         {objects.map((object) => (
           <Tile key={object.id} {...object} onAction={handleSaveClick} />
