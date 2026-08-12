@@ -141,9 +141,9 @@ export default function IndexPage() {
     <>
       <h3>Welcome to...</h3>
       <h1> LCS003 </h1>
-      <input
+      <input className="index-search"
         type="text"
-        placeholder="Search..."
+        placeholder="Search works by title/creator/origin/year..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />

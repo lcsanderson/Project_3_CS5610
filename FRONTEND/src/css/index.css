@@ -53,10 +53,12 @@ body {
   border-radius: 5px;
   padding: 12px;
 
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.22),
-    rgba(255, 255, 255, 0.06)
+  background: radial-gradient(
+    ellipse at center,
+    rgba(178, 212, 221, 0.8) 0%,
+    rgba(178, 212, 221, 0.6) 100%,
+    rgba(178, 212, 221, 0.15) 110%,
+    rgba(178, 212, 221, 0.02) 120%
   );
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -139,4 +141,17 @@ body {
      in the flex row rather than collapsing to zero-width. */
   flex-shrink: 0;
   width: 1px;
+}
+
+.index-search {
+  border: none;
+  background-color: transparent;
+  font-size: 2em;
+  width: 80%;
+  color: red;
+}
+
+.index-search::placeholder {
+  color: rgb(57, 167, 17);
+  opacity: 0.8;
 }
