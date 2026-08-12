@@ -48,8 +48,52 @@ body {
     you'll likely tune this once real visual design starts.
   */
   width: 240px;
-  border-color: red;
-  border-style: double;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  padding: 12px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.22),
+    rgba(255, 255, 255, 0.06)
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  box-shadow:
+  0 8 px 32px rgba(0, 0, 0, 0.25),
+  inset 0 1px 1px rgba(255, 255, 255, 0.4),
+  inset 0 -1px 1px rgba(255, 255, 255, 0.08);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* sheen along the top to simulate glass vibe*/
+.tile::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.28),
+    rgba(255, 255, 255, 0)
+  );
+  pointer-events: none;
+}
+
+/* lifts on hover */
+.tile:hover {
+  transform: translateY(-4px);
+  box-shadow:
+  0 14px 40px rgba(0, 0, 0, 0.35),
+  inset 0 1px 1px rgba(255, 255, 255, 0.5),
+  inset 0 -1px 1px rgba(255, 255, 255, 0.08);
 }
 
 /*
