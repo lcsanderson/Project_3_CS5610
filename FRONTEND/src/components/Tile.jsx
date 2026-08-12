@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import PropTypes from "prop-types";
 
 export default function Tile({
@@ -10,8 +11,19 @@ export default function Tile({
   actionLabel = "Save",
   onAction,
 }) {
+  // glass clink sound on hover
+  const audioRef = useRef(null);
+
+  function handleHover() {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.currentTime = 0; // allows immediate replay instead of queuing
+    audio.play().catch(() => {});
+  }
+
   return (
-    <div className="tile">
+    <div className="tile" onMouseEnter={handleHover}>
+      <audio ref={audioRef} src="/sounds/GlassSound.m4a" preload="auto" />
       <img src={imageUrl} alt={title} className="tile-image" />
       <p className="tile-title">{title}</p>
       <p className="tile-designer">{designer}</p>
@@ -34,11 +46,11 @@ export default function Tile({
 
 Tile.propTypes = {
   id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequires,
-  designer: PropTypes.string.isRequires,
-  country: PropTypes.string.isRequires,
-  year: PropTypes.string.isRequires,
+  title: PropTypes.string.isRequired,
+  designer: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
+  year: PropTypes.string.isRequired,
   imageUrl: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([null])]),
-  actionLabel: PropTypes.string.isRequires,
-  onAction: PropTypes.string.func,
+  actionLabel: PropTypes.string.isRequired,
+  onAction: PropTypes.func,
 };
