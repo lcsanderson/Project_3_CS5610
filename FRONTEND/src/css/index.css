@@ -146,7 +146,7 @@ body {
 .index-search {
   border: none;
   background-color: transparent;
-  font-size: 2em;
+  font-size: 2.5em;
   font-family: gilda-display-regular;
   width: 80%;
   color: lightblue;
@@ -176,4 +176,9 @@ body {
 .tile-star-button svg {
   width: 28px;
   height: 28px;
+}
+
+.index-h1{
+  margin-left: 15px;
+  color: rgba(178, 212, 221, 0.6);
 }

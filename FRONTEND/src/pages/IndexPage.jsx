@@ -139,8 +139,7 @@ export default function IndexPage() {
 
   return (
     <>
-      <h3>Welcome to...</h3>
-      <h1> LCS003 </h1>
+      <h1 className="index-h1"> LCS003 </h1>
       <input className="index-search"
         type="text"
         placeholder="Search works by title/creator/origin/year..."
