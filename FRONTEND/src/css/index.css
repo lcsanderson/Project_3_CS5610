@@ -6,7 +6,67 @@
 
 
 body {
-  background-color: #6a282c;
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(160deg, #cfe8f3 0%, #fdf1c7 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* the "swirl" — slowly rotating conic gradient, blurred into soft bands */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(153, 152, 152, 0.924),
+    rgba(213, 211, 201, 0.836),
+    rgba(250, 205, 57, 0.727),
+    rgba(73, 71, 64, 0.464),
+    rgb(255, 231, 97)
+  );
+  filter: blur(60px);
+  animation: swirl 50s linear infinite;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* the "celestial" layer — slower drifting glow, adds depth/parallax */
+body::after {
+  content: "";
+  position: fixed;
+  top: -30%;
+  left: -30%;
+  width: 160%;
+  height: 160%;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.5), transparent 60%),
+    radial-gradient(circle at 70% 60%, rgba(143, 184, 222, 0.35), transparent 60%);
+  animation: drift 30s ease-in-out infinite alternate;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes swirl {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes drift {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(6%, -6%) scale(1.12); }
+}
+
+/* respects users who've asked their OS to minimize motion */
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after {
+    animation: none;
+  }
 }
 
 .tile-container {
@@ -149,7 +209,7 @@ body {
   font-size: 2.5em;
   font-family: gilda-display-regular;
   width: 80%;
-  color: lightblue;
+  color: rgb(99, 167, 185);
   margin-left: 15px;
   margin-bottom: 10px;
 }
@@ -169,7 +229,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(210, 235, 245, 0.8);
+  color: rgba(0, 172, 252, 0.706);
   margin: 0 auto 8px;
 }
 
@@ -180,5 +240,6 @@ body {
 
 .index-h1{
   margin-left: 15px;
-  color: rgba(178, 212, 221, 0.6);
+  color: rgba(111, 184, 204, 0.8);
 }
+

@@ -17,7 +17,7 @@
 .star-nav-button svg {
   width: 36px;
   height: 36px;
-  color: red;
+  color: rgba(178, 212, 221);
 }
 
 /* disabled while auth is verifying user */
