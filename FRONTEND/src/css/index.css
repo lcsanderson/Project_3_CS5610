@@ -1,3 +1,10 @@
+.gilda-display-regular {
+  font-family: "Gilda Display", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 body {
   background-color: #6a282c;
 }
@@ -125,13 +132,6 @@ body {
   height: auto;
 }
 
-.tile-save-button {
-  /* Just enough breathing room so the button doesn't crowd the year
-     text right above it — no color/size/hover treatment yet, that's
-     a later aesthetics pass. */
-  margin-top: 8px;
-}
-
 .scroll-sentinel {
   /* Invisible on purpose — this element exists only so the
      IntersectionObserver in IndexPage.jsx has something to watch at
@@ -147,11 +147,33 @@ body {
   border: none;
   background-color: transparent;
   font-size: 2em;
+  font-family: gilda-display-regular;
   width: 80%;
-  color: red;
+  color: lightblue;
+  margin-left: 15px;
+  margin-bottom: 10px;
 }
 
 .index-search::placeholder {
   color: rgb(57, 167, 17);
   opacity: 0.8;
+}
+
+.tile-star-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(210, 235, 245, 0.8);
+  margin: 0 auto 8px;
+}
+
+.tile-star-button svg {
+  width: 28px;
+  height: 28px;
 }

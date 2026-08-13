@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import PropTypes from "prop-types";
+import StarIcon from "./StarIcon";
 
 export default function Tile({
   id,
@@ -20,26 +21,31 @@ export default function Tile({
     audio.currentTime = 0; // allows immediate replay instead of queuing
     audio.play().catch(() => {});
   }
+  const isSaved = actionLabel === "Remove";
 
   return (
     <div className="tile" onMouseEnter={handleHover}>
       <audio ref={audioRef} src="/sounds/GlassSound.m4a" preload="auto" />
+      <div className="tile=image-wrap">
+        {onAction && (
+        <button
+          className="tile-star-button"
+          aria-label={isSaved ? "Remove from collection" : "Save to collection"}
+          onClick={() =>
+            onAction({ objectId: id, title, designer, country, year, imageUrl })
+          }
+        >
+          <StarIcon filled={isSaved} />
+        </button>
+      )}
       <img src={imageUrl} alt={title} className="tile-image" />
+
       <p className="tile-title">{title}</p>
       <p className="tile-designer">{designer}</p>
       <p className="tile-country">{country}</p>
       <p className="tile-year">{year}</p>
 
-      {onAction && (
-        <button
-          className="tile-save-button"
-          onClick={() =>
-            onAction({ objectId: id, title, designer, country, year, imageUrl })
-          }
-        >
-          {actionLabel}
-        </button>
-      )}
+      </div>
     </div>
   );
 }
