@@ -1,10 +1,3 @@
-.gilda-display-regular {
-  font-family: "Gilda Display", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-
 body {
   margin: 0;
   min-height: 100vh;
@@ -83,6 +76,12 @@ body::after {
     carefully managed.
   */
   gap: 16px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tile-container::-webkit-scrollbar {
+  display: none;
 }
 
 /*
@@ -206,17 +205,21 @@ body::after {
 .index-search {
   border: none;
   background-color: transparent;
-  font-size: 2.5em;
+  font-size: 2em;
   font-family: gilda-display-regular;
   width: 80%;
   color: rgb(99, 167, 185);
-  margin-left: 15px;
-  margin-bottom: 10px;
+  font-family: "Gilda Display", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .index-search::placeholder {
-  color: rgb(57, 167, 17);
+  color: rgb(158, 159, 158);
   opacity: 0.8;
+  font-family: "Gilda Display", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .tile-star-button {
@@ -238,8 +241,26 @@ body::after {
   height: 28px;
 }
 
-.index-h1{
+h1{
   margin-left: 15px;
   color: rgba(111, 184, 204, 0.8);
+  font-family: "Manufacturing Consent", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 3em;
 }
 
+footer {
+  font-family: "Manufacturing Consent", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  color: rgba(137, 111, 204, 0.378);
+  margin-left: 15px;
+
+}
+
+.page-header-row {
+  display: flex;
+  align-items: center; /* vertically centers h1 and input against each other */
+  gap: 20px;
+}

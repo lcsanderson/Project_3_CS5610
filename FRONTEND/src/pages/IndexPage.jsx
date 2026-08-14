@@ -139,13 +139,15 @@ export default function IndexPage() {
 
   return (
     <>
-      <h1 className="index-h1"> LCS003 </h1>
+    <div className="page-header-row">
+      <h1> LCS003 </h1>
       <input className="index-search"
         type="text"
         placeholder="Search works by title/creator/origin/year..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
+    </div>
       <div className="tile-container" ref={containerRef}>
         {objects.map((object) => (
           <Tile key={object.id} {...object} onAction={handleSaveClick} />

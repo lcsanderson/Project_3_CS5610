@@ -7,7 +7,6 @@ export default function BaseTemplate({ children }) {
       <StarButton />
       <main className="app-content"> {children}</main>
       <footer className="app-footer">
-        <hr />
         <p> LCS003 • 2026 </p>
       </footer>
     </div>
