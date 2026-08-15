@@ -2,19 +2,19 @@
 export default function LoginPage() {
   return (
     <div className="auth-page">
-      <h1>Login</h1>
+      <h1 className="login-h1">LOGIN</h1>
       <form method="POST" action="/api/auth/login">
-        <div>
-          <label htmlFor="email">Email address</label>
+        <div className="login-criteria">
+          <label htmlFor="email">Email address: </label>
           <input type="email" id="email" name="email" required />
         </div>
-        <div>
-          <label htmlFor="password">Password</label>
+        <div className="login-criteria">
+          <label htmlFor="password">Password: </label>
           <input type="password" id="password" name="password" required />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" className="login-button">login</button>
       </form>
-      <p>
+      <p className="register-direction">
         Don't have a profile? <a href="/register">Register here</a>
       </p>
     </div>
