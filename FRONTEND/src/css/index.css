@@ -242,6 +242,7 @@ body::after {
 }
 
 h1{
+  padding-left: 16px;
   margin-left: 15px;
   color: rgba(111, 184, 204, 0.8);
   font-family: "Manufacturing Consent", system-ui;

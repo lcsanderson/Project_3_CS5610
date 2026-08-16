@@ -1,7 +1,4 @@
 .modal-backdrop {
-  /* Fixed + full viewport coverage: sits on top of everything else,
-     regardless of scroll position, and dims/blocks interaction with
-     the page underneath. */
   position: fixed;
   top: 0;
   left: 0;
@@ -9,26 +6,52 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
 
-  /* Centers .modal-box both horizontally and vertically inside the
-     backdrop, regardless of the box's own size. */
   display: flex;
   align-items: center;
   justify-content: center;
 
-  /* Above the star nav button (z-index: 10) and everything else on
-     the page, so the modal is never accidentally hidden behind
-     other fixed-position elements. */
   z-index: 100;
 }
 
 .modal-box {
-  background: white;
+  /* CHANGED: translucent light-grey instead of solid white */
+  background: rgba(220, 220, 220, 0.55);
+  backdrop-filter: blur(12px); /* NEW: lets the dimmed page behind soften through, matching the tile glass look */
+  -webkit-backdrop-filter: blur(12px);
+
   padding: 24px;
-  border-radius: 8px;
+  border-radius: 12px; /* CHANGED: was 8px, softened to feel closer to the tile/button rounding elsewhere */
+  border: 1px solid rgba(255, 255, 255, 0.4); /* NEW: faint edge, same idea as .tile's border */
   max-width: 400px;
   width: 90%;
   max-height: 80vh;
   overflow-y: auto;
+}
+
+.modal-title {
+  font-family: "Gilda Display", serif;
+  font-weight: 300;
+  font-style: normal;
+  color: rgba(220, 235, 239, 0.8);
+  margin-top: 0;
+  font-size: 50px;
+}
+
+/* NEW: mirrors .login-criteria */
+.modal-fieldset {
+  font-family: "Gilda Display", serif;
+  font-weight: 200;
+  font-style: normal;
+  border: none;
+  padding: 0;
+  margin: 0 0 16px;
+}
+
+.modal-fieldset legend {
+  font-family: "Gilda Display", serif;
+  font-weight: 400;
+  padding: 0;
+  margin-bottom: 8px;
 }
 
 .modal-radio-row {
@@ -36,10 +59,14 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 8px;
+  font-family: "Gilda Display", serif;
+  font-weight: 200;
 }
 
 .modal-error {
   color: #b3261e;
+  font-family: "Gilda Display", serif;
+  font-weight: 200;
 }
 
 .modal-actions {
@@ -47,4 +74,22 @@
   justify-content: flex-end;
   gap: 8px;
   margin-top: 16px;
+}
+
+.modal-button {
+  background-color: rgba(178, 212, 221);
+  border-radius: 50px;
+  padding: 8px 20px;
+  border-style: none;
+  font-family: "Manufacturing Consent", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  color: #edebe7;
+  cursor: pointer;
+}
+
+.modal-button:disabled {
+  opacity: 0.6;
+  cursor: default;
 }

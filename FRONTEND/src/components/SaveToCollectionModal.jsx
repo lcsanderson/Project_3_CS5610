@@ -70,9 +70,9 @@ export default function SaveToCollectionModal({ item, collections, onClose }) {
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-        <h2>Save to collection</h2>
+        <h2 className="modal-title">Save to collection</h2>
         {collections.length > 0 && (
-          <fieldset>
+          <fieldset className="modal-fieldset">
             <legend>Choose an existing collection</legend>
             {collections.map((collection) => (
               <label key={collection._id} className="modal-radio-row">
@@ -89,7 +89,7 @@ export default function SaveToCollectionModal({ item, collections, onClose }) {
           </fieldset>
         )}
 
-        <fieldset>
+        <fieldset className="modal-fieldset">
           <legend>Or create a new colleciton</legend>
           <label className="modal-radio-row">
             <input
@@ -114,10 +114,14 @@ export default function SaveToCollectionModal({ item, collections, onClose }) {
         {error && <p className="modal-error">{error}</p>}
 
         <div className="modal-actions">
-          <button onClick={onClose} disabled={saving}>
+          <button className="modal-button" onClick={onClose} disabled={saving}>
             Cancel
           </button>
-          <button onClick={handleConfirm} disabled={saving}>
+          <button
+            className="modal-button"
+            onClick={handleConfirm}
+            disabled={saving}
+          >
             {saving ? "Saving" : "Save"}
           </button>
         </div>

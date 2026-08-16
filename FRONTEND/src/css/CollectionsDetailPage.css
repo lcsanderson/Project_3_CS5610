@@ -1,21 +1,94 @@
-/* pages/CollectionDetailPage.css
-   Minimal layout only, matching the "aesthetics later" approach used
-   everywhere else so far. */
+h1{
+  margin-left: 0px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  margin-top: 0px;
+  font-size: 4em;
+}
 
 .collection-detail {
-  padding: 16px;
+  padding-left: 16px;
+  padding-bottom: 30px;
 }
 
 .collection-detail-header {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  gap: 8px;
   margin-bottom: 16px;
 }
 
-.delete-collection-button {
-  /* Pushed to the far right of the header row, away from the
-     name/rename controls, since it's a destructive action worth
-     visually separating from everything else up there. */
-  margin-left: auto;
+.collection-button-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rename-button {
+  background-color: transparent;
+  border-style: none;
+  font-family: "Manufacturing Consent", system-ui;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 18px;
+  color: rgba(98, 193, 93, 0.808);
+  cursor: pointer;
+}
+
+.rename-button:hover{
+  color: rgb(9, 167, 1);
+}
+
+.delete-button {
+  background-color: transparent;
+  border-style: none;
+  font-family: "Manufacturing Consent", system-ui;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 18px;
+  color: rgba(195, 67, 20, 0.765);
+  cursor: pointer;
+}
+
+.delete-button:hover{
+  color: red;
+}
+
+/* mirrors .login-criteria's font, but its own class so it can
+   diverge (spacing, size) without touching the login form */
+.rename-field {
+  font-family: "Gilda Display", serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.rename-field input {
+  margin-top: 0;
+  background-color: rgba(178, 212, 221, 0.4); /* CHANGED: icy-blue tint instead of login's neutral grey */
+  border-style: none;
+  border-radius: 5px;
+  font-family: "Gilda Display", serif;
+  font-size: 1.5em;
+  padding: 6px 12px;
+}
+
+/* mirrors .login-button's shape/font, smaller + different tint
+   so it reads as a secondary, inline action rather than a
+   full auth-page submit button */
+.rename-edit-button {
+  background-color: rgba(111, 184, 204, 0.5); /* CHANGED: cooler blue-grey instead of login's pale blue */
+  border-radius: 50px;
+  padding: 3px 10px; /* CHANGED: smaller than login-button's 8px 20px */
+  border-style: none;
+  font-family: "Manufacturing Consent", system-ui;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 14px; 
+  color: #edebe7;
+  cursor: pointer;
+}
+
+.rename-edit-button:hover {
+  background-color: rgba(111, 184, 204, 0.7);
 }

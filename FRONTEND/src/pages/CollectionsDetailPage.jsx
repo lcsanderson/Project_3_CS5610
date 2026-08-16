@@ -95,21 +95,32 @@ export default function CollectionDetailPage() {
   return (
     <div className="collection-detail">
       <div className="collection-detail-header">
+        <h1>{collection.name}</h1>
+
         {isRenaming ? (
-          <>
-            <input
-              type="text"
-              value={renameValue}
-              onChange={(e) => setRenameValue(e.target.value)}
-              autoFocus
-            />
-            <button onClick={handleRenameSubmit}>Save</button>
-            <button onClick={() => setIsRenaming(false)}>Cancel</button>
-          </>
-        ) : (
-          <>
-            <h1>{collection.name}</h1>
+          <div className="collection-button-row">
+            <div className="rename-criteria">
+              <input
+                type="text"
+                value={renameValue}
+                onChange={(e) => setRenameValue(e.target.value)}
+                autoFocus
+              />
+            </div>
+            <button className="rename-edit-button" onClick={handleRenameSubmit}>
+              Save
+            </button>
             <button
+              className="rename-edit-button"
+              onClick={() => setIsRenaming(false)}
+            >
+              Cancel
+            </button>
+          </div>
+        ) : (
+          <div className="collection-button-row">
+            <button
+              className="rename-button"
               onClick={() => {
                 setRenameValue(collection.name);
                 setIsRenaming(true);
@@ -117,15 +128,11 @@ export default function CollectionDetailPage() {
             >
               Rename
             </button>
-          </>
+            <button className="delete-button" onClick={handleDeleteCollection}>
+              Delete Collection
+            </button>
+          </div>
         )}
-
-        <button
-          onClick={handleDeleteCollection}
-          className="delete-collection-button"
-        >
-          Delete collection
-        </button>
       </div>
 
       {collection.items.length === 0 ? (
