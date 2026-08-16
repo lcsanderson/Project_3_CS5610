@@ -62,17 +62,11 @@ export default function CollectionsPage() {
 
   return (
     <div className="collections-list">
-      <button
-        className="logout-triangle-button"
-        onClick={handleLogout}
-        aria-label="Log out"
-      >
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <polygon points="12,3 21,20 3,20" />
-        </svg>
-      </button>
-      <h1> Saved Collections </h1>
+      <h1 className="saved-collections-h1"> Saved Collections </h1>
       {body}
+      <button className="logout-button" onClick={handleLogout}>
+        log out
+      </button>
     </div>
   );
 }

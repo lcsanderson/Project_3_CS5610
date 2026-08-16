@@ -1,15 +1,7 @@
-/* pages/CollectionsPage.css
-   Minimal layout only, matching the "aesthetics later" approach used
-   everywhere else so far. */
-
 .collections-list {
-  /* Plain vertical stacking — no special scroll container needed
-     here, unlike the horizontal tile scroll on IndexPage. The
-     browser's own page scroll handles "scroll down to see more
-     collections" with zero extra CSS required. */
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  padding: 20px;
 }
 
 .collection-row {
@@ -24,6 +16,12 @@
      color/hover treatment for the later design pass. */
   text-decoration: none;
   color: inherit;
+  font-family: "Gilda Display", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+.collection-row:hover{
+  color:rgb(232, 149, 24);
 }
 
 .collection-count {
@@ -31,35 +29,31 @@
   color: #666;
 }
 
-.logout-triangle-button {
-  /* Mirrors the star button's fixed top-right placement, but on the
-     LEFT — keeps the two from ever overlapping, and keeps this page's
-     one extra control visually separate from the star's "go home"
-     behavior. */
+.logout-button {
   position: fixed;
-  top: 16px;
-  left: 16px;
+  bottom: 16px;
+  right: 16px;
 
-  width: 44px;
-  height: 44px;
-  border: none;
-  border-radius: 50%;
   cursor: pointer;
-  background: transparent;
 
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10;
 
-  /* Dark sage green — sets the button's `color`, which the triangle
-     SVG's fill="currentColor" then picks up automatically. Adjust
-     this single value later if the exact shade needs tuning during
-     the aesthetics pass — nothing else needs to change. */
-  color: #5b6f4f;
+  background-color: rgb(232, 79, 24);
+  border-radius: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-style: none;
+  font-family: "Manufacturing Consent", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  color: #bce6f4;
 }
 
-.logout-triangle-button svg {
-  width: 24px;
-  height: 24px;
+.saved-collections-h1{
+  left: 0px;
+  margin-left: 0px;
 }
