@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import "../css/SaveToCollectionModal.css";
 
@@ -15,6 +15,47 @@ export default function SaveToCollectionModal({ item, collections, onClose }) {
   // used to set a message to show if something goes wrong
   // null means no error rn
   const [error, setError] = useState(null);
+
+  const modalRef = useRef(null); // NEW: for finding focusable elements inside
+  const previouslyFocusedRef = useRef(null); // NEW: remembers what to refocus on close
+
+  // traps focus inside the modal, closes on Escape, and restores
+  // focus to whatever triggered the modal once it closes
+  useEffect(() => {
+    previouslyFocusedRef.current = document.activeElement;
+
+    const focusableSelector =
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    const modalNode = modalRef.current;
+    const focusableEls = modalNode.querySelectorAll(focusableSelector);
+    const firstEl = focusableEls[0];
+    const lastEl = focusableEls[focusableEls.length - 1];
+
+    firstEl?.focus();
+
+    function handleKeyDown(e) {
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (e.key !== "Tab") return;
+
+      // manual wrap-around since the browser has no built-in focus trap
+      if (e.shiftKey && document.activeElement === firstEl) {
+        e.preventDefault();
+        lastEl.focus();
+      } else if (!e.shiftKey && document.activeElement === lastEl) {
+        e.preventDefault();
+        firstEl.focus();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      previouslyFocusedRef.current?.focus(); // return focus to the tile's save button
+    };
+  }, [onClose]);
 
   async function handleConfirm() {
     setError(null);
@@ -69,8 +110,15 @@ export default function SaveToCollectionModal({ item, collections, onClose }) {
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
-      <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-        <h2 className="modal-title">Save to collection</h2>
+      <div
+        className="modal-box"
+        ref={modalRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <h2 className="modal-title" id="modal-title">Save to collection</h2>
         {collections.length > 0 && (
           <fieldset className="modal-fieldset">
             <legend>Choose an existing collection</legend>
