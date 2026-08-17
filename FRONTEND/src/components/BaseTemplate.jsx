@@ -10,7 +10,7 @@ export default function BaseTemplate({ children }) {
       <StarButton />
       <main className="app-content" id="main-content" tabIndex={-1}> {children}</main>
       <footer className="app-footer">
-        <p> LCS003 • 2026 </p>
+        <p> LCS004 • 2026 </p>
       </footer>
     </div>
   );

@@ -140,7 +140,7 @@ export default function IndexPage() {
   return (
     <>
     <div className="page-header-row">
-      <h1> LCS003 </h1>
+      <h1> LCS004 </h1>
       <input className="index-search"
         type="text"
         placeholder="Search works by title/creator/origin/year..."
