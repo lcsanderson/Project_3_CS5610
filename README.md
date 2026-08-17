@@ -24,7 +24,8 @@ Claude also helped a lot with managing the Cooper Hewitt API, it is managed with
  
 ## Live Demo
  
-https://lcs003.onrender.com
+https://lcs003.onrender.com - project 3
+https://lcs004.onrender.com - project 4
  
 ## Tech Stack
  
